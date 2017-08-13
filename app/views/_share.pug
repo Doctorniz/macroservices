@@ -1,0 +1,12 @@
+mixin Share(url)
+  .shareContainer
+    input(type="text" value=`${url}`)
+    a.shareButton(href='https://www.facebook.com/sharer/sharer.php?u='+url target="_new")
+      img(src='https://www.shareicon.net/data/128x128/2017/04/04/882445_media_512x512.png')
+    a.shareButton(href='https://twitter.com/home?status='+url target="_new")
+      img(src='https://www.shareicon.net/data/128x128/2017/04/04/882448_media_512x512.png')
+    a.shareButton(href='https://plus.google.com/share?url='+url target="_new")
+      img(src='https://www.shareicon.net/data/128x128/2017/04/04/882442_media_512x512.png')
+    a.shareButton(href='https://www.linkedin.com/shareArticle?mini=true&url='+url+'&title=Poll on naymPoll&summary=Vote on this new poll and let us know what you think&source=' target="_new")
+      img(src='https://www.shareicon.net/data/128x128/2017/04/27/885249_media_512x512.png')
+      

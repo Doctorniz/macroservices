@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  if UserData
+    form(action='/update' method='POST')
+      input(type="hidden" name="username" value=UserData.username)
+      label(for="City") City
+      input(type="text" name="city" value=UserData.city)
+      label(for="Country") Country
+      input(type="text" name="country" value=UserData.country)
+      button(type="submit") Update
+    form(action='/changepassword' method='POST')
+      input(type="hidden" name="username" value=UserData.username)
+      label(for="oldpassword") Old password
+      input(type="password" name="password" required)
+      label(for="username") New password
+      input(type="password" name="newpassword" required)
+      label(for="username") Confirm new password
+      input(type="password" name="cpassword" required)
+      button(type="submit") Change

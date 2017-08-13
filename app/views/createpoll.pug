@@ -1,0 +1,10 @@
+extends polllayout
+
+block content
+  .createPollContainer
+    span.createPollHeader= askedQuestion ? askedQuestion : "Create a New Poll"
+    div(id="createPollFormContainer")
+  script(type='text/javascript').
+    const loggedIn = "#{loggedIn}"
+    const askedQuestion = "#{askedQuestion}"
+  script(type='text/javascript' src='../js/pollForm.js')

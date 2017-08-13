@@ -1,0 +1,18 @@
+extends booklayout
+
+include _bookCard
+
+block content
+  if !Books || Books.length < 1
+    p No books to show here
+  if Books
+    each BookData in Books
+      each requestor in BookData.requestors
+        +BookCard(BookData, loggedIn)
+        p= requestor + " wants this book"
+        if BookData.tradeRequestAccepted
+          p Trade Request Accepted
+        form(action="/acceptTrade" method="POST")
+          input(type="hidden" name="BookDBID" value=BookData._id)
+          input(type="hidden" name="requestor" value=requestor)
+          button(type="submit") Accept this Request

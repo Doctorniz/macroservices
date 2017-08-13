@@ -1,0 +1,28 @@
+mixin PollCard(poll={})
+  a.pollCard(href=`/poll/${poll.slug}`)
+    span.pollCardTitle= poll.question
+    .optionspreview
+      each option in poll.options
+        .eachOptionCard
+          span.optionCardOption= option.choice + " "
+          span.optionCardResults= option.results
+
+mixin NotLoggedIn()
+  ol.notLoggedInUserPolls
+    li 
+      | Sign up or login to create
+      |  a new poll
+    li
+      | If you know the poll link, you can access it at 
+      em /poll/POLLNAME
+      |  where 
+      em POLLNAME
+      |  is a slug unique to each poll.
+    li
+      | You can also see all the polls of a user at 
+      em /user/USERNAME
+      |  where 
+      em USERNAME
+      |  is refers to user's unique username.
+    li
+      | When you are logged in, you will see all your polls with their results summarised here. 

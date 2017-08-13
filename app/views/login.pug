@@ -1,0 +1,9 @@
+extends layout
+include _login
+
+block content
+  h2 Login
+  if !loggedIn
+    +Login
+  if loggedIn
+    h3= "Welcome, " + loggedIn

@@ -1,0 +1,22 @@
+extends polllayout
+
+include _pollCard
+
+block content
+  .UserPollContainer
+    if !data
+      +NotLoggedIn()
+    if loggedIn
+      form.createNewPoll(action='/create' method='GET')
+        input(type="text" name="question" placeholder="What question do you want to ask today?")
+        button(type="submit") Create Poll
+    if data
+      if data.length===0 && same
+        div.loggedInNoPolls You have no polls yet. Create your first one today!!
+      if data.length===0 && !same
+        p= userLookUp + " does not have any polls :("
+      if data.length > 0
+        span.userPollsHeader= "Polls by " + userLookUp
+        .pollContainer
+          each poll in data
+            +PollCard(poll)

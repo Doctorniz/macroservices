@@ -1,0 +1,12 @@
+extends layout
+
+include _gymCard
+
+block content
+  h1 Check if search works
+  form.NightLifeSearch(method="POST" action="/gyms")
+    input(type="text" name="barsearch" placeholder="Enter your location to find out what's going on!" value=`${searchTerm?searchTerm:''}`)
+  if results
+    div(class="gymContainer")
+      each gym in results.results
+        +GymCard(gym, googlePhoto, searchTerm, loggedIn)

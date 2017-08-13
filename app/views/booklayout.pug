@@ -1,0 +1,16 @@
+extends layout
+
+block css
+  style
+    include ../../client/css/book.css
+
+block miniDash
+  if loggedIn
+    p.tradeRequestsMiniDash
+      a(href='/books') All Books
+      a(href='/mybooks') My Books
+      if inboxOutbox
+        a(href='/requestInbox')= "Inbox ("+inboxOutbox.requestsIn+")"
+        a(href='/requestOutbox')= "Outbox ("+inboxOutbox.requestsOut+")"
+  form(action='/searchbooks' method='POST' class="booksearchbar")
+    input(type="text" name="bookSearch" placeholder='Add a book you own to begin trading..' value=bookSearchTerm ? bookSearchTerm : '')

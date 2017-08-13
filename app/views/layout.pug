@@ -1,0 +1,40 @@
+include _login
+
+html
+  head
+    title naymServices
+    link(href="https://fonts.googleapis.com/css?family=Amatic+SC|Baloo|Exo|Josefin+Sans|Nova+Mono|Pacifico|Rock+Salt" rel="stylesheet")
+    style
+      include ../../client/css/site.css
+    block css
+  body
+    block header
+      p.siteTitle naymServices
+      .sitenav
+        a(href="/polls") naymPoll
+        a(href='/gyms') naymGym
+        a(href='/books') naymLibrary
+        a(href='/stocks') naymStocks
+      if loggedIn
+        .userLoggedInDash
+          span.welcomeMessage= "Welcome " + loggedIn
+          .userButtons
+            a(href='/settings')
+              button Settings
+            a(href='/logout')
+              button Logout
+      if !loggedIn
+        .NotLoggedIn
+          a(href="/login") Login
+          a(href='/signup') Sign Up
+      .miniDash
+        block miniDash
+      
+      if error
+        h3= error
+      if success
+        h3= success
+    
+    
+    .content
+      block content

@@ -1,0 +1,81 @@
+.tradeRequestsMiniDash {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.tradeRequestsMiniDash a {
+    text-decoration: none;
+    margin-left: 5%;
+    margin-right: 5%;
+    justify-content: center;
+}
+
+.booksearchbar {
+    display: flex;
+    margin-left: 25%;
+    margin-right:25%;
+    justify-content: center;
+}
+
+.booksearchbar input {
+    flex: 1 0 0;
+    text-align: center;
+}
+
+.booksContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.bookCardButtons {
+    padding: 10px 15px 10px 15px;
+    max-width: 200px;
+    align-items:stretch;
+    align-self:center;
+    display:flex;
+    flex-direction:column;
+}
+
+.bookCard {
+    text-align:center;
+    flex: 1 0 auto;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.cardButtons {
+    flex: 0 0 auto;
+    display:flex;
+    flex-direction:column;
+    
+}
+
+.cardButtons form {
+    display:flex;
+    flex-direction:column;
+    justify-content: center
+}
+
+.cardButtons form button {
+}
+
+.bookCardTitle {
+    font-family: "Baloo";
+    line-height:1.0;
+    padding-bottom: 20px;
+}
+
+.bookCard img {
+    flex-grow:1;
+}
+
+.bookCardAuthor {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+

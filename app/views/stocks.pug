@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Stocks
+  div#stockContainer    
+    div#stocksGraphs
+    form#add-stock-form
+      input#stock-input
+      button(type=submit) Submit
+    div#errorDiv
+    div#includedStocks
+  script(src='/socket.io/socket.io.js')
+  script(type='text/javascript' src='/js/Stocks.js')

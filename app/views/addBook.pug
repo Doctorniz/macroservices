@@ -1,0 +1,17 @@
+extends booklayout
+
+include _bookCard
+
+block content
+  if !BookData || BookData.length < 1
+    p No books to show here
+  if BookData && BookData.length > 0
+    div.booksContainer
+      each book in BookData
+        div.bookCardButtons
+          +BookCard(book, loggedIn)
+          div.cardButtons
+            form(action='/addbook' method='POST')
+              input(type="hidden" name="BookData" value=book)
+              button(type="submit" name="submit") Add This Book
+    

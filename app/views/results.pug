@@ -1,0 +1,13 @@
+extends polllayout
+include _share
+
+
+
+block content
+  div.pollResultsContainer
+    span.createPollHeader= data.question
+    div#chart
+    +Share(url)
+  script(type="text/javascript").
+    const data = !{JSON.stringify(data)}
+  script(type='text/javascript' src='/js/pollResults.js')

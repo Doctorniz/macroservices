@@ -1,0 +1,14 @@
+extends polllayout
+include _share
+
+
+block content
+  div.pollQuestionContainer
+    span.createPollHeader.pollQuestionHeader= poll.question
+    form(method="POST" class="pollChoice")
+      each option, index in poll.options
+        .eachChoice
+          label= option.choice
+          input(type="radio" value=index name="choice")
+      button(type="submit") Vote
+    +Share(url)

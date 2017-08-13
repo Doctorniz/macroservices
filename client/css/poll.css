@@ -1,0 +1,298 @@
+h1 {
+    color: red;
+}
+
+.xaxis .domain, .xaxis .tick line { 
+    display: none;
+    
+}
+
+.xaxis .tick text {
+    fill: green;
+    transform: rotate(-10deg);
+}
+
+.axis {
+    font:14px;
+}
+
+#chart {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.pollChoice {
+    
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    padding-left:20%;
+    padding-right:20%;
+}
+
+.eachChoice {
+    display:flex;
+    flex-direction:row;
+    margin: 5px;
+        background: #FFFDD8;
+        font-family: "Exo";
+        padding:5px;
+        align-items:center;
+    
+}
+
+.eachChoice input {
+    vertical-align: middle;
+    cursor:hand;
+    height:inherit;
+}
+
+.eachChoice label {
+    text-align: left;
+    flex:1 0 0;
+    margin-left:8px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+
+
+.pollChoice button {
+    padding: 5px;
+    font-family:"Exo";
+    cursor:hand;
+    font-size:1.3rem;
+}
+
+.pollQuestionContainer {
+    display:flex;
+    flex-direction:column;
+}
+
+.pollQuestionHeader {
+    text-align:center;
+    padding: 10px 20px 20px 20px;
+}
+
+
+
+.pollCard {
+    text-decoration: none;
+    color:initial;
+    max-width:300px;
+    min-width: 150px;
+    min-height: 150px;
+    margin:5px 10px 5px 10px;
+    padding: 5px 10px 5px 10px;
+    font-family:"Exo";
+    display:flex;
+    flex-direction:column;
+    border:0.1px solid blue;
+    
+}
+
+
+.pollCardTitle {
+    text-transform: uppercase;
+    font-size:1.2rem;
+    font-family: "Baloo";
+    line-height:1.0;
+    flex: 1 0 0;
+    align-self:center;
+    text-align: center;
+    display:flex;
+    align-items:center;
+    
+}
+
+.optionspreview {
+    
+}
+
+.eachOptionCard {
+    display:flex;
+}
+
+.optionCardResults {
+    padding-left:10px;
+    color:red;
+}
+
+.optionCardOption {
+    flex: 1 0 0;
+    text-align:center;
+}
+
+
+.pollContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+}
+
+.UserPollContainer {
+    display:flex;
+    flex-direction:column;
+    
+}
+
+.notLoggedInUserPolls {
+    padding: 5% 15% 10px 15%;
+    font-family: "Josefin Sans";
+    font-size: 1.2rem;
+}
+
+.notLoggedInUserPolls li {
+    list-style-position: outside;
+    padding: 10px 0px 10px 30px;
+    line-height: 1.5;
+
+}
+
+.notLoggedInUserPolls em {
+    font-weight: bold;
+}
+
+.createNewPoll {
+    display:flex;
+    justify-content:center;
+    padding: 5px 15% 5px 15%;
+    
+}
+
+.createNewPoll input {
+    flex: 1 0 0;
+    text-align:center;
+    margin-right: 15px;
+    border-color:blue;
+    font-size: 1.35rem;
+    font-family: "Josefin Sans";
+}
+
+.createNewPoll button {
+    cursor: hand;
+    font-family: "Baloo";
+    border: none;
+}
+
+.userPollsHeader {
+    text-align:center;
+    text-transform: uppercase;
+    font-family: "Baloo";
+    font-size: 2.0rem;
+}
+
+.createPollContainer {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+}
+
+.createPollHeader {
+    font-family: "Baloo";
+    text-align: center;
+    font-size:2.0rem;
+}
+
+#createPollFormContainer {
+    width:80%;
+}
+
+.createPollForm {
+    display:flex;
+    flex-direction: column;
+}
+
+
+.createPollForm > input {
+    text-align:center;
+    border-color:blue;
+    font-size: 1.35rem;
+    font-family: "Josefin Sans";
+    margin-top:10px;
+    margin-bottom:10px;
+    padding:5px;
+}
+.createPollForm > label {
+    text-align:center;
+    font-family: "Exo";
+    padding-top:10px;
+    font-weight:bold;
+    margin-bottom: 10px;
+}
+
+.inputOption {
+    display:flex;
+}
+.inputOption > input {
+    flex: 1 0 0;
+    margin-left: 10%;
+    margin-right:10%;
+    padding:3px;
+    margin-bottom:10px;
+    border:0.5px solid lightblue;
+    font-family: "Josefin Sans";
+    font-size: 1.1rem;
+    vertical-align: middle;
+}
+
+.inputOption > div {
+    cursor: hand;
+    vertical-align: middle;
+    color:red;
+    font-family: "Exo";
+}
+
+.addOptionButton {
+    align-self:center;
+    cursor: hand;
+    vertical-align: middle;
+}
+
+.createPollFinal {
+    border:0;
+    background:lightblue;
+    cursor:hand;
+    font-size:1.3rem;
+    border-radius: 5px;
+    font-family: "Josefin Sans";
+    font-weight: bold;
+    padding: 5px;
+}
+
+.optionsHeading {
+    display:flex;
+    justify-content:center;
+}
+
+.optionsHeading > span {
+    flex: 1 0 0;
+}
+
+.pollResultsContainer {
+    display:flex;
+    flex-direction: column;
+}
+
+#chart {
+    margin: 0 15px 10px 15px;
+}
+
+svg {
+        border: 0.1px solid darkblue;
+
+    background: #daf3ff;
+}
+
+svg > .bar >rect {
+    fill:white;
+}
+
+svg > .bar > text {
+    font-family: "Exo";
+    font-weight:bold;
+}
+
