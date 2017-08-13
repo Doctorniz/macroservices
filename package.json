@@ -1,7 +1,10 @@
 {
-  "name": "chat-example",
+  "name": "nizmacroservices",
   "version": "0.0.0",
-  "description": "A chat example to showcase how to use `socket.io` with a static `express` server with `async` for control flow.",
+  "engines": {
+    "node": "8.2.1"
+  },
+  "description": "Macroservices including a voting app, book trading, gym finding and stock monitoring facilities.",
   "main": "server.js",
   "repository": "",
   "author": "Mostafa Eweda <mo.eweda@gmail.com>",
