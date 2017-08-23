@@ -57,7 +57,7 @@ exports.urlShortener = async (req, res) => {
         var short = Math.floor(Math.random()*100000).toString();
 
         var obj = {
-            original, shortURL: startingpath+short
+            original, shortCode: short, shortURL: startingpath+short
         }
         var data = await new shorturl({
             original, short
@@ -138,10 +138,10 @@ exports.upload = upload.single('filed');
 exports.filedata = (req, res) => {
     var file = req.file;
     var obj = {
-        name: file.originalname,
+        filename: file.originalname,
         encoding: file.encoding,
-        mimetype: file.mimetype,
-        sizebytes: file.size
+        mimeType: file.mimetype,
+        sizeInBytes: file.size
     }
     
     res.json(obj);
