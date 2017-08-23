@@ -49,7 +49,7 @@ exports.headerParser =  (req, res) => {
 }
 
 exports.urlShortener = async (req, res) => {
-    var startingpath = 'https://microniz.herokuapp.com/u/';
+    var startingpath = 'https://naymservices.herokuapp.com/u/';
     var original  =  req.path.substring(7);
     var expression = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
     var regex = new RegExp(expression);
