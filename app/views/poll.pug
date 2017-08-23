@@ -11,4 +11,7 @@ block content
           label= option.choice
           input(type="radio" value=index name="choice")
       button(type="submit") Vote
+    if poll.user = loggedIn
+      form(action="/deletePoll/"+poll.slug method="POST").deletePollForm
+        button(type="submit").deleteButton DELETE
     +Share(url)

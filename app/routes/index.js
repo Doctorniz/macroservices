@@ -47,6 +47,10 @@ router.get('/polls', voterController.userPolls);
 
 router.get('/polls/:user', voterController.otherPolls);
 
+router.post('/deletePoll/:slug', voterController.deletePoll)
+
+router.get('/deletePoll', voterController.userPolls);
+
 router.get('/gyms', naymGym.myGyms, naymGym.searchPage);
 
 router.post('/gyms', naymGym.searchBar, naymGym.myGyms, naymGym.renderResults);

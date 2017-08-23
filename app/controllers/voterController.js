@@ -174,3 +174,12 @@ exports.otherPolls = async (req, res) => {
     });
     })
 }
+
+
+exports.deletePoll = async (req, res) => {
+    var slug = req.params.slug;
+    polls.findOneAndRemove({slug, user:req.session.user}, (err, docs) => {
+        if(err) return res.redirect("/poll")
+        res.redirect('/polls');
+    })
+}
