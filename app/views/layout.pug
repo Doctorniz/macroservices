@@ -9,32 +9,43 @@ html
     block css
   body
     block header
-      p.siteTitle naymServices
+      a(href='/').siteTitle
+        .siteTitle naymServices
       .sitenav
         a(href="/polls") naymPoll
         a(href='/gyms') naymGym
         a(href='/books') naymLibrary
         a(href='/stocks') naymStocks
+        a(href='/microServices') microNaym
       if loggedIn
         .userLoggedInDash
-          span.welcomeMessage= "Welcome " + loggedIn
+          span.welcomeMessage= "Logged in as " + loggedIn
           .userButtons
             a(href='/settings')
-              button Settings
+              button &#9881
             a(href='/logout')
-              button Logout
+              button &#x1f6aa
       if !loggedIn
         .NotLoggedIn
-          a(href="/login") Login
-          a(href='/signup') Sign Up
+          +Login()
+          a(href='/login') Sign Up
       .miniDash
         block miniDash
-      
-      if error
-        h3= error
-      if success
-        h3= success
+      .cardMessages
+        if error
+          span.cardMessage.errorMessage= "Error: " + error
+        if success
+          span.cardMessage.successMessage= success
     
     
     .content
       block content
+    .footer
+      block footer
+        .Footer
+          span &copy2017 Nizar Ahmed
+          span All this work would not have been possible without the help of the kind folk at 
+            a(href="http://freecodecamp.com") FreeCodeCamp
+            |  or the work of 
+            a(href="http://wesbos.com") Wes Bos.
+          span Special thanks to Google for allowing me to use their API which was necessary for all the searches, and Quandl for their provision of stock data.

@@ -3,7 +3,10 @@
     font-size:3.0rem;
     text-align:center;
     padding-top:20px;
-    margin-bottom:0px;
+    margin-bottom:20px;
+    text-decoration: none;
+    color: black;
+
 }
 
 .sitenav {
@@ -24,15 +27,13 @@
 
 .userLoggedInDash {
     display:flex;
-    flex-direction:column;
+    flex-direction:row;
     align-items:center;
     justify-content:center;
-    margin: 20px auto 20px auto;
+    margin: 5px 20% 5px 0;
+    padding: 20px 0 20px 0;
 }
 
-.userLoggedInDash * {
-    padding: 5 20 5 20;
-}
 
 .userButtons {
     display: flex;
@@ -40,57 +41,231 @@
 
 .userButtons * {
     flex: 1 0 0;
+    background:none;
+    border:none;
+    cursor:hand;
+    font-size:1.4rem;
+    
 }
 
 .welcomeMessage {
     text-align: center;
-    font-family: "Amatic SC";
-    font-size: 1.5rem;
+    font-family: "Exo";
+    font-size: 1.1rem;
+    margin-left:auto;
 }
 
 .NotLoggedIn {
+    display:flex;
+    justify-content:center;
+    align-items:center;
     text-align:center;
+    padding: 20px 0 20px 0;
+
+}
+
+.NotLoggedIn > .LogInForm {
+    display:block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.NotLoggedIn form {
+    display:flex;
+    margin:auto;
+}
+
+.NotLoggedIn form input {
+    margin: 5px 10px 5px 10px;
+    text-align:center;
+}
+
+.NotLoggedIn .loginButton {
+    margin: auto;
+}
+
+.LogInSignUpContainer input {
+    width: 30vw;
+}
+
+.loginButton, .signupButton {
+    border:0;
+    font-weight:bold;
+    font-family: "Josefin Sans";
+    font-size: 1.2rem;
+    cursor: hand;
+}
+
+.loginButton {
+    background: #D6FFD6;
+}
+
+.signupButton {
+    background: #B74747;
+    color:white;
+}
+
+.loginInput {
+    padding:2px;
+    font-size: 1.1rem;
+    font-family: "Exo";
+    text-align: center;
 }
 
 .NotLoggedIn a {
-     appearance: button;
+    appearance: button;
     text-decoration: none;
     color: initial;
-    font-family: "Amatic SC";
-    margin: 15%;
-    font-size:1.7rem;
+    font-family: "Josefin Sans";
+    font-size: 1.2rem;
     color:white;
-    background:black;
+    background:#B74747;
+    margin:2px 4px 2px 4px;
+    padding-left:4px;
+    padding-right: 4px;
 }
 
-.shareContainer {
+
+.LogInSignUpContainer {
     display:flex;
-    align-self:center;
-    width:80%;
-    margin-bottom:20px;
+    justify-content: center;
+    align-items: center;
 }
 
-.shareContainer input {
-    flex:1 0 0;
-    text-align:center;
-    padding: 3px;
-    font-size:1.1rem;
-    margin-right:10px;
-}
-
-.shareButton img {
-    width:32px;
-    height:32px;
-}
-
-.gymContainer {
+.LogInSignUpContainer form {
     display: flex;
-    flex-wrap: wrap;
-    justify-content:center;
+    flex-direction: column;
 }
 
-.gymPhoto {
-    width:300px;
-    height:200px;
-    margin:20px;
+.LogInSignUpContainer form > * {
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+
+.LogInContainer, .SignUpContainer {
+    padding:5px 15px 5px 15px;
+}
+
+.LogInSignUpContainer h2 {
+    font-family: "Baloo";
+    text-align: center;
+}
+.cardMessages {
+    display:flex;
+    flex-direction:column;
+}
+
+.cardMessage {
+    text-align:center;
+    font-family:"Exo";
+    font-size:1.2rem;
+    padding:10px;
+    margin: 10px 20% 10px 20%;
+}
+
+.errorMessage {
+    background:rgb(107, 32, 43);
+    color: rgb(255, 198, 207);
+}
+
+.successMessage {
+    background:rgb(58, 91, 41);
+    color: rgb(207, 252, 184);
+}
+
+.settingsContainer {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+
+}
+
+.settingsForm {
+    display: flex;
+    flex-direction:column;
+    margin: 80px;
+    justify-content: center;
+    align-items: center;
+}
+
+.settingsForm input {
+    font-family: "Exo";
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 2px;
+}
+
+.settingsForm label {
+    font-family: "Nova Mono";
+    font-size: 1.1rem;
+    padding: 10px 0 10px 0;
+}
+
+.settingsForm button {
+    border: 2px inset;
+    background-color: white;
+    font-family: "Amatic SC";
+    font-size:1.6rem;
+    cursor: pointer;
+    font-weight:bolder;
+    margin: 10px 0 10px 0;
+}
+
+.indexContainer {
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+}
+
+.indexCard {
+    display: flex;
+    flex-direction: column;
+    border: 2px inset;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    cursor: pointer;
+    margin: 15px 0 15px 0;
+    padding: 0 20px 0 20px;
+}
+
+.indexCardHeader {
+    font-family: "Baloo";
+    font-size: 1.5rem;
+    padding:10px 0px 10px 0px;
+}
+
+.indexCardDesc {
+    font-family: "Josefin Sans";
+    font-size: 1.2rem;
+    font-weight: bolder;
+}
+
+.indexCardSkills {
+    display:flex;
+    align-items:center;
+    justify-content: center;
+}
+
+.indexCardSkills li {
+    margin: 10px;
+    font-family: "Nova Mono";
+    font-size: 0.9rem;
+    
+}
+
+.Footer {
+    font-family: "Josefin Sans";
+    font-size: 0.9rem;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+.Footer a {
+    text-decoration: none;
+    font-weight: bold;
+    color:inherit;
 }

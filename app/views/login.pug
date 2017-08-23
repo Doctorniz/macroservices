@@ -2,8 +2,14 @@ extends layout
 include _login
 
 block content
-  h2 Login
-  if !loggedIn
-    +Login
-  if loggedIn
-    h3= "Welcome, " + loggedIn
+  .LogInSignUpContainer
+    .LogInContainer
+      if loggedIn
+        p.welcomeMessage= "Already logged in. Welcome " + loggedIn
+      if !loggedIn
+        h2 Login
+        +Login
+    if !loggedIn
+      .SignUpContainer
+        h2 Sign Up
+        +Signup()

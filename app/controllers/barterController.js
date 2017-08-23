@@ -7,8 +7,8 @@ var Googlekey ='AIzaSyD7jrJ1GBKQh97oiEJ2LI5R_W6ctVsfQbg';
 
 exports.allBooks = (req, res) => {
     var allBooks = Books.find({}, (err,books) =>{
-        if(err) res.send("error finding book")
-        
+        if(err) return res.render("Books", {loggedIn: req.session.user, error: "Error finding book", inboxOutbox: req.session.inboxOutbox})
+        req.session.back = req.originalUrl;
         res.render('Books', {
             Books: books,
             loggedIn: req.session.user,
@@ -21,7 +21,8 @@ exports.allBooks = (req, res) => {
 exports.myBooks = (req, res) => {
     if(!req.session.user) return res.redirect('/login');
     var myBooks = Books.find({owner: req.session.user}, (err,books) =>{
-        if(err) res.send("error finding book")
+        if(err) return res.render("Books", {loggedIn: req.session.user, error: "Error finding book", inboxOutbox: req.session.inboxOutbox})
+        req.session.back = req.originalUrl;
         res.render('Books', {
             Books: books,
             loggedIn: req.session.user,
@@ -33,8 +34,29 @@ exports.myBooks = (req, res) => {
 
 
 exports.addBookStart = (req, res) => {
-    
-    res.render('addBook');
+    req.session.back = req.originalUrl;
+    res.render('addBook', {
+        loggedIn: req.session.user,
+        inboxOutbox: req.session.inboxOutbox
+    });
+}
+
+exports.displayPrevSearch = (req, res) => {
+    if(req.session.bookData && req.session.bookSearchTerm) {
+        req.session.back = req.originalUrl;
+        res.render('addBook', {
+            BookData: req.session.bookData,
+            loggedIn: req.session.user,
+            bookSearchTerm: req.session.bookSearchTerm,
+            inboxOutbox: req.session.inboxOutbox
+        }) 
+    } else {
+        req.session.back = req.originalUrl;
+        res.render('addBook', {
+            loggedIn: req.session.user,
+            inboxOutbox: req.session.inboxOutbox
+        })
+    }
 }
 
 exports.searchBooks = (req, res) => {
@@ -57,7 +79,9 @@ exports.searchBooks = (req, res) => {
             BookImage
           })
         }
-        
+        req.session.bookData = BookData;
+        req.session.bookSearchTerm = bookSearchTerm;
+        req.session.back = req.originalUrl;
         res.render('addBook', {
             BookData,
             loggedIn: req.session.user,
@@ -68,13 +92,17 @@ exports.searchBooks = (req, res) => {
 }
 
 exports.addBook = async (req, res) => {
+    if(!req.session.user) return res.redirect('/login');
     var object = JSON.parse(req.body.BookData)
     object.owner = req.session.user ? req.session.user : 0
     object.requestors = [];
     
     var dataSave = await new Books(object);
     await dataSave.save(err => {
-        if(err) return res.send("error saving to database")
+        if(err) return res.render("addBook", {
+            loggedIn: req.session.user,
+            inboxOutbox: req.session.inboxOutbox
+        })
     })
     return res.redirect('/books');
     

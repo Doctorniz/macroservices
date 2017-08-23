@@ -9,8 +9,9 @@ const gyms = require('../models/Gyms');
 
 exports.searchPage = (req,res)=>{
     var data = req.session.search || {}
-    
+    data["myGymData"] = req.session.myGymData;
     data["loggedIn"] = req.session.user;
+    req.session.back = req.session.originalUrl;
     res.render('search', data);
 };
 
@@ -28,7 +29,8 @@ exports.searchBar = async (req, res, next) => {
             var gymresults = JSON.parse(apiData.body)
             if (gymresults.results.length<1) return res.render('search', {
                 error: "No results",
-                searchTerm
+                searchTerm,
+                myGymData:req.session.myGymData
             })
             req.session["search"] = await { results: gymresults, searchTerm, googlePhoto }
             
@@ -40,6 +42,7 @@ exports.searchBar = async (req, res, next) => {
 
 exports.renderResults = async (req,res,next) => {
     var data = req.session.search;
+    data.myGymData = req.session.myGymData;
     var b = [];
     var test;
     data["loggedIn"] = req.session.user ? req.session.user : null;
@@ -59,6 +62,7 @@ exports.renderResults = async (req,res,next) => {
         data.results.results[i].users = await dbSearch(results[i].id)
         if (i + 1 === results.length) {
             req.session.search = data;
+            req.session.back = req.originalUrl
             return res.render('search', data)
             
         }
@@ -68,6 +72,15 @@ exports.renderResults = async (req,res,next) => {
      //res.render('search', data)
 }
 
+exports.myGyms = (req, res, next) => {
+    if (!req.session.user) return next();
+    var user = req.session.user;
+    gyms.find({users:user}, (err, docs) => {
+        if(err) return res.send(err);
+        req.session.myGymData = docs;
+        next();
+    })
+}
 
 exports.addMember = (req,res)=>{
     var gymData = JSON.parse(req.body.id)
@@ -77,7 +90,7 @@ exports.addMember = (req,res)=>{
         gymName : gymData.name,
         users: [req.session.user]
     }
-    var gymList = req.session.search.results.results
+    var gymList = req.session.search ?  req.session.search.results.results : []
     gyms.findOne({gymGoogleID: gymData.id}).exec(async (err, data) => {
         if(err) return res.send("error getting gym data")
         var gymCookie  = gymList.find((gym) => {
@@ -104,30 +117,25 @@ exports.addMember = (req,res)=>{
     })
 };
 
-exports.removeMember = (req,res)=>{
-    var gymData = JSON.parse(req.body.id)
+exports.removeMember = async (req,res)=>{
+    
     if(!req.session.user) return res.redirect('/login');
-    var object = { 
-        gymGoogleID: gymData.id,
-        gymName : gymData.name,
-        users: [req.session.user]
-    }
-    var gymList = req.session.search.results.results
-    gyms.findOne({gymGoogleID: gymData.id}).exec(async (err, data) => {
+    gyms.findOne({gymGoogleID: req.body.id}).exec(async (err, data) => {
         if(err) return res.send("error getting gym data")
+         var gymList = req.session.search ?  req.session.search.results.results : []
         var gymCookie  = gymList.find((gym) => {
-                return gym.id === gymData.id
+                return gym.id === req.body.id
             })
         if(data === null) {
             return res.redirect('/gyms');
         } else {
             var index = data.users.indexOf(req.session.user)
             data.users.splice(index, 1);
-            data.save((err) => {
+            gymCookie ? gymCookie.users.splice(gymCookie.users.indexOf(req.session.user),1) : null
+            await data.save((err) => {
                 if (err) return res.send("error saving to database")
             });
             
-            gymCookie.users.splice(index, 1);
             return res.redirect('/gyms');
 
         }

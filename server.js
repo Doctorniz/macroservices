@@ -8,9 +8,10 @@ var app = express();
 var router = require('./app/routes/index');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+var cors = require('cors');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-var request = require('request')
+var request = require('request');
 
 require('dotenv').config({ path: 'variables.env' });
 
@@ -38,6 +39,8 @@ app.use(session({
     }
 }));
 
+app.use(bodyParser.json())
+app.use(cors());
 
 
 app.use(express.static(path.join(__dirname, 'client')));
@@ -74,24 +77,42 @@ io.on('connection', (socket) => {
   socket.on('test', (a) => console.log(a));
   
   socket.on('add stock', (ticker) => {
+   if(stocks.map((stock) => stock.ticker).includes(ticker)) {
+     return socket.emit("errormsg", "Ticker <span class='tickerName2'>"+ ticker + "</span> already exists", (err, db) => {
+         if (err) console.log (err);
+       })
+   }
+   
     var uri = api1 + ticker + api2;
-    request({uri}, (err, docs, body) => {
-        if(err) console.log(err);
+    request({uri}, async (err, docs, body) => {
+        if(err) return console.log(err);
         var data = JSON.parse(body);
+        
+
        if(data.datatable.data.length < 1 || !data.datatable) {
          socket.emit("errormsg", "No such ticker", (err, db) => {
          if (err) console.log (err);
-       })}
+       })
+         
+       }
        if(data.datatable.data.length > 0) {
-         stocks.push(ticker);
-         console.log("Monitoring " + stocks)
-         socket.emit("addtickerbutton", ticker);
-         socket.emit("addtickergraph", {
-           ticker,
-           data: data.datatable.data
+         socket.emit("errormsg", "");
+         var datePriceArray = data.datatable.data;
+      
+         var timeRange = [];
+         var priceRange = [];
+         datePriceArray.map((arr) => {
+           timeRange.push(arr[0]);
+           priceRange.push(arr[1])
          })
          
-         
+         var stock = {ticker, timeRange, priceRange};
+            stocks.push(stock)
+            console.log("Monitoring " + stocks.map(stock =>  stock.ticker))
+         io.sockets.emit("addtickerbutton", ticker);
+         io.sockets.emit("addtickergraph", {
+           stock, stocks
+         })
          
        }
     })
@@ -99,9 +120,10 @@ io.on('connection', (socket) => {
   })
   
   socket.on('remove stock', (ticker) => {
-    stocks.splice(stocks.indexOf(ticker), 1);
-    console.log("Monitoring " + stocks)
-    socket.emit('removetickerbutton', ticker);
+    stocks.splice(stocks.map((stock) => stock.ticker).indexOf(ticker), 1);
+    console.log("Monitoring " + stocks.map((stock) => stock.ticker))
+    io.sockets.emit('removetickerbutton', ticker);
+    io.sockets.emit('removetickergraph', ticker);
   })
   
 })

@@ -1,13 +1,19 @@
 mixin GymCard(gym={}, googlePhoto="", searchTerm="", loggedIn)
   -var photosource = gym.photos ? googlePhoto+gym.photos[0].photo_reference : 'http://www.freeiconspng.com/uploads/gym-icon-png-kansas-city-5.png'
   div(style="background-image: url("+photosource+");" class='gymPhoto')
-    p= gym.name
-    p= gym.users.length
+    span.GymCardName= gym.name
+    span.GymCardUsers= gym.users.length + " subscribed"
     if gym.users.includes(loggedIn)
       form(action='/removemember' method='POST')
         input(type="hidden" name="SearchTerm" value=searchTerm)
-        button(type="submit" name="id" value=gym) Remove
+        button.leaveButton(type="submit" name="id" value=gym.id) Leave
     else
       form(action='/member' method='POST')
         input(type="hidden" name="SearchTerm" value=searchTerm)
-        button(type="submit" name="id" value=gym) Attend
+        button.subscribeButton(type="submit" name="id" value=gym) Subscribe
+
+mixin GymTicker(gym={})
+  form(action='/removemember' method='POST' class='ownGyms')
+    span(class="gymTickerName")= gym.gymName
+    input(type="hidden" name="id" value = gym.gymGoogleID)
+    button(type="submit") Leave

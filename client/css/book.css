@@ -6,9 +6,16 @@
 
 .tradeRequestsMiniDash a {
     text-decoration: none;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 1%;
+    margin-right: 1%;
     justify-content: center;
+    font-family:"Nova Mono";
+    border:2px outset;
+    padding:4px;
+    width:120px;
+    text-align:center;
+    background:rgb(41, 56, 112);
+    color:white;
 }
 
 .booksearchbar {
@@ -31,11 +38,13 @@
 
 .bookCardButtons {
     padding: 10px 15px 10px 15px;
-    max-width: 200px;
+    width: 200px;
     align-items:stretch;
     align-self:center;
     display:flex;
     flex-direction:column;
+    border:2px outset;
+    margin: 2px 5px 2px 5px;
 }
 
 .bookCard {
@@ -45,6 +54,7 @@
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    cursor:help;
 }
 
 .cardButtons {
@@ -74,8 +84,134 @@
 }
 
 .bookCardAuthor {
+    font-family: "Nova Mono";
+}
+
+.bookCardAuthor {
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
+.requestBookButton, .removeRequestButton, .addBookButton, .acceptRequestButton {
+    border: 0px;
+    font-family: "Josefin Sans";
+    font-size:1.2rem;
+    cursor: pointer;
+    font-weight:bold;
+    border-radius: 10px;
+    border:1px inset;
+}
 
+.addBookButton {
+    background: white;
+}
+
+.requestBookButton {
+        background: rgb(200, 247, 226);
+
+}
+
+.removeRequestButton {
+    background: rgb(255, 201, 220);
+
+}
+
+.deleteBookButton {
+    background: rgb(112, 34, 48);
+    border: 0px;
+    font-family: "Josefin Sans";
+    font-weight:bold;
+    font-size:1.1rem;
+    cursor: pointer;
+    color:white;
+    border: 1px outset;
+    border-radius:10px;
+}
+
+.bookRequestedSpan, .bookRequestedInSpan {
+    position: relative;
+    left: 10%;
+    top: 70px;
+    transform: rotate(-10deg);
+    align-self: center;
+    font-family:"Nova Mono";
+}
+
+.bookRequestedSpan {
+        background: rgb(149, 229, 157);
+
+}
+
+.bookRequestedInSpan {
+        background: rgb(204, 106, 158);
+        color:white;
+
+}
+
+.tradeRequestAccepted {
+     position: relative;
+    left: 10%;
+    top: -200px;
+    transform: rotate(-10deg);
+    align-self: center;
+    font-family:"Nova Mono";
+    font-size:1.2rem;
+    background: rgb(89, 142, 2);
+    color: white;
+    font-weight:bold;
+}
+
+.requestorNotice {
+    text-align:center;
+    font-family:"Josefin Sans";
+    padding-bottom:5px;
+    font-size:1.0rem;
+}
+
+.requestorNoticeName {
+    font-size: 1.2rem;
+        font-weight:bold;
+
+}
+
+.acceptRequestForm {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    
+}
+
+.acceptRequestButton {
+    background:black;
+    color:white;
+}
+
+.unsuccessfulTradeRequest {
+    padding-bottom: 5px;
+    text-align: center;
+    color:maroon;
+    font-family:"Josefin Sans";
+    font-size:1.1rem;
+    font-weight:bolder;
+    background:rgb(251, 252, 189);
+}
+
+.emptyBookContainer {
+    font-family:"Exo";
+    font-size:1.4rem;
+}
+
+.searchBookForm {
+     display:flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.searchBookInput {
+    width:60%;
+    text-align:center;
+    padding:3px;
+    font-family: "Josefin Sans";
+    font-size:1.1rem;
+    text-transform: uppercase;
+}

@@ -4,6 +4,11 @@ const users = require('../models/Users');
 const basedir = '../'
 
 
+exports.home = (req, res) => {
+    req.session.back = req.originalUrl;
+    res.render('index', {loggedIn: req.session.user})
+}
+
 exports.test = (req, res) => {
     res.send("hello world times two");
 }
@@ -21,8 +26,9 @@ exports.usernamecheck = (req,res,next) => {
         if(data===null) {
             next()
         } else {
-            res.render("signup", {
-                error: "username exists",
+            res.render("login", {
+                loggedIn: req.session.user,
+                error: "Username already exists, please choose another",
                 
                 
             });
@@ -36,8 +42,9 @@ exports.passwordmatch = (req, res, next) => {
         if (req.session.back) {
             return res.redirect(req.session.back+'?error=passwords do not match')
         }
-        res.render("signup", {
-                error: "passwords do not match",
+        res.render("login", {
+                loggedIn: req.session.user,
+                error: "These passwords do not match",
                 basedir
             });
     } else {
@@ -52,8 +59,9 @@ exports.emailcheck = (req, res, next) => {
         if(data===null) {
             next();
         } else {
-            res.render("signup", {
-                error: "email exists",
+            res.render("login", {
+                loggedIn: req.session.user,
+                error: "This email exists in our database",
                 basedir
             });
         }
@@ -61,13 +69,15 @@ exports.emailcheck = (req, res, next) => {
 }
 
 exports.adduser = async (req, res) => {
-    const object = {username: req.body.username, password: req.body.password, email: req.body.email}
+    const object = {username: req.body.username, password: req.body.newpassword, email: req.body.email}
     var data = await new users(object);
     await data.save(err=> {
         if(err) return res.send("error saving to database");
     });
     req.session.user = req.body.username;
-    res.json(object);
+    res.render('index', {
+        loggedIn: req.session.user
+    });
 }
 
 exports.loginVerify = (req, res, next) => {
@@ -89,6 +99,10 @@ exports.loginpage = async (req, res) => {
 }
 
 exports.login = async (req, res) => {
+    //you added originalurl to default back
+    let back = req.session.back;
+    console.log(req.url, req.path);
+    req.session.back = null;
     users.findOne({username:req.body.username}, async (err, data) => {
         if (err) return res.send("error finding data");
         if (data==null) {
@@ -103,15 +117,16 @@ exports.login = async (req, res) => {
             })
         } else {
             req.session.user = req.body.username;
-            res.redirect(req.session.back ? req.session.back : '/')
+            res.redirect(back ? back : '/')
         }
     })
     
 }
 
 exports.logout = (req, res) => {
-    req.session.user = null;
-    res.redirect('back');
+    req.session.destroy();
+    console.log(req.session);
+    res.redirect('/');
 }
 
 exports.session = async (req, res) => {
@@ -120,17 +135,19 @@ exports.session = async (req, res) => {
 
 exports.settings = (req, res) => {
     var error = req.query.error;
-    req.session.back = '/settings'
+    var success = req.query.success;
+    req.session.back = req.originalUrl;
     users.findOne({username: req.session.user}, (err, user) => {
         if(err) return res.send(err+"error")
         if(user=== null) {
             req.session = {}
             return res.redirect('/settings')
         } else {
+            req.session.back = req.path;
             return res.render('settings', {
                 UserData: user,
                 loggedIn: req.session.user,
-                error
+                error, success
             });
         }
     })
@@ -142,7 +159,7 @@ exports.update = (req, res) => {
         "$set": {"city": req.body.city, "country": req.body.country}
     }, (err, db) => {
         if(err) return res.send("error " + err)
-        res.redirect('/settings');
+        res.redirect('/settings?success=Location updated!');
     })
 }
 
@@ -150,7 +167,7 @@ exports.changePassword = (req, res) => {
     users.findOneAndUpdate({username: req.body.username, password: req.body.password}, 
     {"$set": {"password": req.body.newpassword}}, (err, db) => {
         if(err) return res.send(err + "err")
-        if (db === null) return res.redirect('/settings?error=please type your password again')
-        res.redirect('/settings');
+        if (db === null) return res.redirect('/settings?error=Please type your password again')
+        res.redirect('/settings?success=Password updated');
     })
 }

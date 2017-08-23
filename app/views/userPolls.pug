@@ -12,9 +12,9 @@ block content
         button(type="submit") Create Poll
     if data
       if data.length===0 && same
-        div.loggedInNoPolls You have no polls yet. Create your first one today!!
+        div.NoPolls You have no polls yet. Create your first one today!!
       if data.length===0 && !same
-        p= userLookUp + " does not have any polls :("
+        div.NoPolls= userLookUp + " does not have any polls :("
       if data.length > 0
         span.userPollsHeader= "Polls by " + userLookUp
         .pollContainer

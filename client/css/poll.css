@@ -296,3 +296,28 @@ svg > .bar > text {
     font-weight:bold;
 }
 
+.shareContainer {
+    display:flex;
+    align-self:center;
+    width:80%;
+    margin-bottom:20px;
+}
+
+.shareContainer input {
+    flex:1 0 0;
+    text-align:center;
+    padding: 3px;
+    font-size:1.1rem;
+    margin-right:10px;
+}
+
+.shareButton img {
+    width:32px;
+    height:32px;
+}
+
+.NoPolls {
+    text-align:center;
+    font-family:"Exo";
+    font-size:1.4rem;
+}

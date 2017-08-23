@@ -1,14 +1,6 @@
 extends layout
+include _login
 
 block content
   h2 Sign up here
-  form(method="POST")
-    label(for="username") Username
-    input(type="text" name="username" required)
-    label(for="password") Password
-    input(type="password" name="newpassword" required)
-    label(for="cpassword") Confirm password
-    input(type="password" name="cpassword" required)
-    label(for="email") Email
-    input(type="email" name="email")
-    button(type="submit" value="Save") Sign Up
+  +Signup

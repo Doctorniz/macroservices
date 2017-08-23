@@ -1,0 +1,40 @@
+extends layout
+
+block css
+  style
+    include ../../client/css/micro.css
+
+block content
+  .microContainer
+    .microItem
+      span.microItemHeader TimeStamp
+      form#timeStamp
+        input(type="text" name="time" placeholder="Enter a date either in its UNIX format or as natural language (e.g. June 27 2017) to convert it" size="90%")
+      span.microItemDesc Alternatively, you could directly use <i>/time/<b>DATE</b></i> with the date in either a UNIX format or natural language (e.g. June 27 2017) to receive a JSON result providing the date in both formats.
+    div(onclick='location.href="/whoami"').microItem.whoAmI
+      span.microItemHeader WhoAmI Service
+      span.microItemDesc Via <i>/whoami</i>, you can discover more about your IP address, language and operating system.
+    .microItem
+      span.microItemHeader URL Shortener
+      form#toShort
+        input(type="text" name="original" placeholder="Enter an address here e.g. http://www.google.com to receive a shorter redirecting URL" size="90%")
+      form#toLong
+        input(type="text" name="short" placeholder="If you already have a short id key, place it here to be redirected" size="90%")
+      span.microItemDesc Alternatively, you could use <i>/short/<b>URL</b></i> (remember to include the leading http or https) to receive a <i>/u/<b>LINK</b></i> which would redirect you to the original address.
+    .microItem
+      span.microItemHeader Image Search
+      form#imageSearch
+        input(type="text" name="terms" placeholder="Enter some search terms here" size="50")
+        input(type="range" min="1" max="10" value="10" name="offset" id="offset")
+        label Offset
+          span#offsetVal 10
+      span.microItemDesc Alternative, access the search query directly by <i>/search/<strong>TERMS</strong></i>. You can access the most recent searches via <a href="/recent"><i>/recent</i></a>. Utilises Google Custom Search Engine.
+    .microItem
+      span.microItemHeader File Parser
+      form(action='/file' method='POST' enctype="multipart/form-data")#fileParse
+        input(type='file' name='filed')
+        button(type='submit' name='submit') Check this file's size
+      span.microItemDesc Use this utility from this page to temporarily upload a file to determine the metadata of a file returned as a JSON string.
+        
+  script(type='text/javascript' src='/js/microServices.js')
+    

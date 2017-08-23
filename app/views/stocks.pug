@@ -1,13 +1,44 @@
 extends layout
 
+block css
+  style
+    include ../../client/css/stock.css
+
 block content
-  h1 Stocks
-  div#stockContainer    
-    div#stocksGraphs
-    form#add-stock-form
-      input#stock-input
-      button(type=submit) Submit
-    div#errorDiv
+  div#stockContainer
     div#includedStocks
+    form#add-stock-form
+      input(placeholder="Enter a ticker to search" autocomplete="off")#stock-input
+    div#errorDiv
+    div#stocksGraph
+    form#timeBar
+      label
+        input(type="radio" name="timeBar" id="1209600000" value=1209600000).timeButton 
+        span 2WK
+      label
+       input(type="radio" name="timeBar" id="2628000000" value=2628000000).timeButton 
+       span 1MO
+      label
+        input(type="radio" name="timeBar" id="5256000000" value=5256000000).timeButton 
+        span 2MO
+      label
+        input(type="radio" name="timeBar" id="7884000000" value=7884000000).timeButton 
+        span 3MO
+      label
+        input(type="radio" name="timeBar" id="10512000000" value=10512000000).timeButton 
+        span 4MO
+      label
+        input(type="radio" name="timeBar" id="15768000000" value=15768000000).timeButton 
+        span 6MO
+      label
+        input(type="radio" name="timeBar" id="31536000000" value=31536000000 checked).timeButton 
+        span 1YR
+      label
+        input(type="radio" name="timeBar" id="157680000000" value=157680000000).timeButton 
+        span 5YR
+      label
+        input(type="radio" name="timeBar" id="315360000000" value=315360000000).timeButton 
+        span 10Y
   script(src='/socket.io/socket.io.js')
+  script(src='https://cdn.plot.ly/plotly-1.2.0.min.js')
   script(type='text/javascript' src='/js/Stocks.js')

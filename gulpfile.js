@@ -19,16 +19,9 @@ gulp.task('build2', function () {
         .pipe(gulp.dest('client/js'));
 });
 
-gulp.task('build3', function () {
-    return browserify({entries: './app/d3/Stocks.jsx', extensions: ['.jsx'], debug: true})
-        .transform('babelify', {presets: ['es2015', 'react']})
-        .bundle()
-        .pipe(source('Stocks.js'))
-        .pipe(gulp.dest('client/js'));
-});
 
-gulp.task('watch', ['build1', 'build2', 'build3'], function () {
-    gulp.watch('*.jsx', ['build1', 'build2', 'build3']);
+gulp.task('watch', ['build1', 'build2'], function () {
+    gulp.watch('*.jsx', ['build1', 'build2']);
 });
 
 gulp.task('default', ['watch']);

@@ -1,0 +1,106 @@
+.stockContainer {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    
+}
+
+
+.content {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+#stocksGraph {
+    margin-left: 10%;
+    margin-right:10%;
+}
+
+.legendtext {
+    text-transform: uppercase;
+}
+
+#includedStocks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tickerButton {
+    margin: 10px;
+}
+
+.tickerButtonText {
+    font-family: "Exo";
+    text-transform: uppercase;
+}
+
+.tickerDelete {
+    color: red;
+    background: none;
+    border: none;
+    cursor: hand;
+}
+
+#add-stock-form {
+    margin: 0 10% 0 10%;
+    display:flex;
+    align-items:center;
+}
+
+#stock-input {
+    flex: 1 0 0;
+    text-align: center;
+    font-family: "Josefin Sans";
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+#errorDiv {
+    font-family: "Exo";
+    text-align:center;
+    margin-top: 10px;
+    color: red;
+}
+
+.tickerName2 {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.selected {
+    background:red;
+}
+
+#timeBar {
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    margin-right:30px;
+}
+#timeBar label {
+    margin: 5px 10px 5px 10px;
+    cursor: pointer;
+    display:flex;
+    font-family:"Nova Mono";
+    font-size:1.2rem;
+    align-items:center;
+}
+
+
+#timeBar input {
+    cursor: pointer;
+    flex: 1 0 0;
+    vertical-align: middle;
+}
+
+#timeBar input:checked + span {
+    color:red;
+    font-weight:bolder;
+}
+
+
+

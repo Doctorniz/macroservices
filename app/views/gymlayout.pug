@@ -1,0 +1,15 @@
+extends layout
+
+include _gymCard
+
+block css
+  style
+    include ../../client/css/gym.css
+
+block miniDash
+  if loggedIn && myGymData
+    .gymDash 
+      span(class="GymDashHeader") My Gyms
+      div(class="OwnGymContainer")
+        each gym in myGymData
+          +GymTicker(gym)

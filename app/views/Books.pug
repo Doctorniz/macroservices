@@ -4,15 +4,15 @@ include _bookCard
 
 
 block content
-  if !Books || Books.length < 1
-    p No books to show here
-  if Books
-    div.booksContainer
+  div.booksContainer
+    if !Books || Books.length < 1
+      p.emptyBookContainer No books to show here
+    if Books
       for book in Books
         div.bookCardButtons
           if loggedIn && book.owner !== loggedIn && book.requestors.includes(loggedIn)
-            p You want this book
+            span.bookRequestedSpan Requested!
           if loggedIn && book.owner === loggedIn && book.requestors.length > 0
-            p People want this book
+            span.bookRequestedInSpan Requested!
           +BookCard(book, loggedIn)
           +BookButtons(book, loggedIn)

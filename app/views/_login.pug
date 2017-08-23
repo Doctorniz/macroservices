@@ -1,7 +1,15 @@
 mixin Login()
-  form(action='/login' method='POST')
-    label(for='username') Username
-    input(type='text' name='username')
-    label(for='password') Password
-    input(type='password' name='password')
-    button(type='submit') Login
+  .LogInForm
+    form(action='/login' method='POST' class="LoginForm")
+      input(type='text' name='username' placeholder="Username" class="loginInput" required)
+      input(type='password' name='password' placeholder="Password" class="loginInput" required)
+      button(type='submit' class="loginButton") Login
+
+mixin Signup()
+  .SignUpForm
+    form(method="POST" action='/signup')
+      input(type="text" name="username" required placeholder="Username" class="loginInput")
+      input(type="password" name="newpassword" required placeholder="Password" class="loginInput")
+      input(type="password" name="cpassword" required placeholder="Confirm Password" class="loginInput")
+      input(type="email" name="email" placeholder="Email Address" class="loginInput")
+      button(type="submit" value="Save" class="signupButton") Sign Up

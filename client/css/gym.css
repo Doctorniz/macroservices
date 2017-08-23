@@ -1,0 +1,114 @@
+.gymContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+}
+
+.gymPhoto {
+    width:300px;
+    height:200px;
+    margin:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    content: '';
+    border:2px solid maroon;
+    border-radius: 5px;
+}
+
+.GymSearch {
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.GymSearch input {
+    width:60%;
+    text-align:center;
+    padding:3px;
+    font-family: "Josefin Sans";
+    font-size:1.1rem;
+    text-transform: uppercase;
+}
+
+.GymCardName {
+    font-family:"Baloo";
+    font-size:2.0rem;
+    line-height: 1.0;
+    text-align: center;
+    background-color:rgba(255, 255, 228,0.7);
+}
+
+.GymCardUsers {
+    font-family:"Pacifico";
+    font-size:1.0rem;
+    text-align: center;
+    background-color:rgba(255, 255, 228,0.55);
+    font-style: italic;
+}
+
+.GymPhoto form {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    
+}
+
+.GymPhoto form button {
+    border: 0;
+    font-family:"Exo";
+    cursor:hand;
+    padding:5px;
+    font-weight:bold;
+}
+
+.subscribeButton {
+    background-color: rgba(197, 232, 197, 0.9)
+}
+
+.leaveButton {
+    background-color: rgba(153, 73, 85,0.9);
+    color:white;
+}
+
+.gymDash {
+    display:flex;
+    flex-direction:column;
+    margin: 0 10% 0 10%;
+    text-align: center;
+    justify-content:center;
+    align-items:center;
+}
+
+.GymDashHeader {
+    padding-bottom:20px;
+    font-family: "Baloo";
+    font-size: 1.8rem;
+}
+
+.OwnGymContainer {
+    display: flex;
+
+}
+
+.ownGyms {
+    display:flex;
+    flex-direction:column;
+    max-width:150px;
+    min-width: 150px;
+}
+.gymTickerName {
+    flex: 1 0 0;
+    font-family: "Exo";
+    font-size:0.9rem;
+    font-weight:bold;
+}
+
+.ownGyms button {
+    cursor: pointer;
+    font-family:"Exo";
+    border:1px solid white;
+    background: rgb(255, 201, 220);
+    font-size:0.8rem;
+}
+

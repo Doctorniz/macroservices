@@ -1,0 +1,62 @@
+.microItem {
+    text-decoration: none;
+    color: inherit;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 40px 20px 40px;
+    border: 2px inset;
+    margin: 10px;
+    width: 80%;
+    cursor: help;
+}
+
+.microContainer {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.microItemHeader {
+    font-family: "Baloo";
+    font-size: 1.8rem;
+    padding-bottom: 25px;
+}
+
+input[type="text"] {
+    text-align: center;
+    font-family: "Josefin Sans";
+    font-size: 1.2rem;
+    padding: 2px;
+}
+
+input[type="range"] {
+    margin:0 20px 0 20px;
+}
+
+.microItemDesc {
+    font-family: "Exo";
+    font-size: 1.2rem;
+}
+
+button, input[type="file"] {
+    font-family: "Josefin Sans";
+    font-size: 1.2rem;
+    padding: 2px;
+}
+
+label {
+    font-family: "Nova Mono";
+}
+
+#offsetVal {
+    font-weight:bolder;
+    padding-left: 10px;
+}
+
+.whoAmI {
+    cursor: pointer;
+}

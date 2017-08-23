@@ -12,22 +12,22 @@ mixin BookButtons(book={}, loggedIn)
         if !book.tradeRequestAccepted
           form(action='/requestBook' method='POST')
             input(type="hidden" name="BookData" value=book)
-            button(type="submit" name="submit") Request This
+            button(type="submit" name="submit").requestBookButton Request
         if book.tradeRequestAccepted
-          span Trade request accepted
+          span.unsuccessfulTradeRequest Trade request accepted
       if loggedIn && book.owner !== loggedIn && book.requestors.includes(loggedIn)
         if book.tradeRequestAccepted === loggedIn
-          span Your trade request has been accepted
+          span.tradeRequestAccepted AND ACCEPTED
         if book.tradeRequestAccepted && book.tradeRequestAccepted !== loggedIn
-          p Your trade request has been unsuccessful
+          span.unsuccessfulTradeRequest Unsuccessful Trade Request
           form(action='/removeRequest' method='POST')
             input(type="hidden" name="BookData" value=book)
-            button(type="submit" name="submit") Remove Request
+            button(type="submit" name="submit").removeRequestButton Remove Request
         if !book.tradeRequestAccepted
           form(action='/removeRequest' method='POST')
             input(type="hidden" name="BookData" value=book)
-            button(type="submit" name="submit") Remove Request 
+            button(type="submit" name="submit").removeRequestButton Remove Request 
       if loggedIn && book.owner === loggedIn
         form(action='/deleteBook' method='POST')
           input(type="hidden" name="BookData" value=book)
-          button(type="submit" name="submit") Delete This
+          button(type="submit" name="submit").deleteBookButton Delete
